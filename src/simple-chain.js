@@ -8,21 +8,37 @@ export default {
   chain: [],
 
   getLength() {
-    let chain = '';
+    return this.chain.length;
   },
-  addLink(/* value */) {
-    
+
+  addLink(value) {
+    this.chain.push(String(value));
+    return this;
   },
-  removeLink(/* position */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+
+  removeLink(position) {
+    if (position > this.chain.length || position < 1 || !Number.isInteger(position)) {
+      this.chain = [];
+      throw new Error("You can't remove incorrect link!");
+    } else {
+      this.chain.splice(position - 1, 1);
+      return this;
+    }
   },
+
   reverseChain() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    this.chain.reverse();
+    return this;
   },
+
   finishChain() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    let finishChain = '';
+    
+    for (let i = 0; i < this.chain.length; i++) {
+      finishChain += `( ${this.chain[i]} )~~`;
+    }
+    finishChain = finishChain.slice(0, finishChain.length - 2);
+    this.chain = [];
+    return finishChain;
   }
 };
