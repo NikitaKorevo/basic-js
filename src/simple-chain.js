@@ -5,13 +5,13 @@ import { NotImplementedError } from '../extensions/index.js';
  * 
  */
 export default {
+  chain: [],
+
   getLength() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    let chain = '';
   },
   addLink(/* value */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    
   },
   removeLink(/* position */) {
     throw new NotImplementedError('Not implemented');
