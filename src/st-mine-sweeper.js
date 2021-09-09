@@ -23,7 +23,31 @@ import { NotImplementedError } from '../extensions/index.js';
  *  [1, 1, 1]
  * ]
  */
-export default function minesweeper (/* matrix */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+export default function minesweeper (matrix) {
+  let matrixMine = [];
+  let TotalMinesInNeighboringCells;
+
+  const checkTarget = (row, col) => {
+    TotalMinesInNeighboringCells = 0;
+
+    if (col + 1 < matrix[row].length && matrix[row][col + 1] === true) TotalMinesInNeighboringCells++;
+    if (col - 1 >= 0 && matrix[row][col - 1] === true) TotalMinesInNeighboringCells++;
+    if (row + 1 < matrix.length && matrix[row + 1][col] === true) TotalMinesInNeighboringCells++;
+    if (row  - 1 >= 0 && matrix[row - 1][col] === true) TotalMinesInNeighboringCells++;
+    if (row  - 1 >= 0 && col  - 1 >= 0 && matrix[row - 1][col - 1] === true) TotalMinesInNeighboringCells++;
+    if (row + 1 < matrix.length && col + 1 < matrix[row].length && matrix[row + 1][col + 1] === true) TotalMinesInNeighboringCells++;
+    if (row + 1 < matrix.length && col  - 1 >= 0 && matrix[row + 1][col - 1] === true) TotalMinesInNeighboringCells++;
+    if (row  - 1 >= 0 && col + 1 < matrix[row].length && matrix[row - 1][col + 1] === true) TotalMinesInNeighboringCells++;
+    
+    return TotalMinesInNeighboringCells;
+  }
+
+  for (let i = 0; i < matrix.length; i++) {
+    matrixMine[i] = [];
+    
+    for (let j = 0; j < matrix[i].length; j++) {
+      matrixMine[i][j] = checkTarget(i, j);
+    }
+  }
+  return matrixMine;
 }
